@@ -39,8 +39,8 @@ var jsPsych = (function() {
     // check if there is a body element on the page
     var default_display_element = jQuery('body');
     if (default_display_element.length === 0) {
-      $(document.documentElement).append($('<body>'));
-      default_display_element = $('body');
+      jQuery(document.documentElement).append(jQuery('<body>'));
+      default_display_element = jQuery('body');
     }
 
     var defaults = {
@@ -66,7 +66,7 @@ var jsPsych = (function() {
     };
 
     // override default options if user specifies an option
-    opts = $.extend({}, defaults, options);
+    opts = jQuery.extend({}, defaults, options);
 
     // set target
     if (typeof window[opts.display_element] == 'function') {
@@ -237,7 +237,7 @@ var jsPsych = (function() {
       // if there is, then this is not a trial node
       if (typeof parameters.timeline !== 'undefined') {
         // extract all of the node level data and parameters
-        var node_data = $.extend(true, {}, parameters);
+        var node_data = jQuery.extend(true, {}, parameters);
         delete node_data.timeline;
         delete node_data.conditional_function;
         delete node_data.loop_function;
@@ -245,7 +245,7 @@ var jsPsych = (function() {
 
         // create a TimelineNode for each element in the timeline
         for (var i = 0; i < parameters.timeline.length; i++) {
-          timeline.push(new TimelineNode($.extend(true, {}, node_data, parameters.timeline[i]), self, i));
+          timeline.push(new TimelineNode(jQuery.extend(true, {}, node_data, parameters.timeline[i]), self, i));
         }
         // store the loop function if it exists
         if (typeof parameters.loop_function !== 'undefined') {
@@ -273,7 +273,7 @@ var jsPsych = (function() {
           console.error('No plugin loaded for trials of type "' + trial_type + '"');
         }
         // create a deep copy of the parameters for the trial
-        trial_data = $.extend(true, {}, parameters);
+        trial_data = jQuery.extend(true, {}, parameters);
       }
     }();
 
@@ -433,7 +433,7 @@ var jsPsych = (function() {
       } else {
         // reset the parameters of this trial to the original parameters, which
         // will reset any functions-as-parameters to the function.
-        trial_data = $.extend(true, {}, parameters);
+        trial_data = jQuery.extend(true, {}, parameters);
       }
       current_iteration++;
     }
@@ -511,7 +511,7 @@ var jsPsych = (function() {
         go();
       } else {
         DOM_target.append('<div class = jspsych-instructions-nav><p>The experiment will launch in fullscreen mode when you click the button below.</p><button id="jspsych-fullscreen-btn" class="jspsych-btn">Launch Experiment</button></div>');
-        $('#jspsych-fullscreen-btn').on('click', function() {
+        jQuery('#jspsych-fullscreen-btn').on('click', function() {
           var element = document.documentElement;
           if (element.requestFullscreen) {
             element.requestFullscreen();
@@ -522,7 +522,7 @@ var jsPsych = (function() {
           } else if (element.msRequestFullscreen) {
             element.msRequestFullscreen();
           }
-          $('#jspsych-fullscreen-btn').off('click');
+          jQuery('#jspsych-fullscreen-btn').off('click');
           DOM_target.html('');
           go();
         });
@@ -582,13 +582,13 @@ var jsPsych = (function() {
   }
 
   function drawProgressBar() {
-    $('body').prepend($('<div id="jspsych-progressbar-container"><span>Completion Progress</span><div id="jspsych-progressbar-outer"><div id="jspsych-progressbar-inner"></div></div></div>'));
+    jQuery('body').prepend(jQuery('<div id="jspsych-progressbar-container"><span>Completion Progress</span><div id="jspsych-progressbar-outer"><div id="jspsych-progressbar-inner"></div></div></div>'));
   }
 
   function updateProgressBar() {
     var progress = jsPsych.progress();
 
-    $('#jspsych-progressbar-inner').css('width', progress.percent_complete + "%");
+    jQuery('#jspsych-progressbar-inner').css('width', progress.percent_complete + "%");
   }
 
   return core;
@@ -607,7 +607,7 @@ jsPsych.data = (function() {
   var dataProperties = {};
 
   module.getData = function() {
-    return $.extend(true, [], allData); // deep clone
+    return jQuery.extend(true, [], allData); // deep clone
   };
 
   module.write = function(data_object) {
@@ -624,7 +624,7 @@ jsPsych.data = (function() {
       'internal_node_id': jsPsych.currentTimelineNodeID()
     };
 
-    var ext_data_object = $.extend({}, data_object, trial.data, default_data, dataProperties);
+    var ext_data_object = jQuery.extend({}, data_object, trial.data, default_data, dataProperties);
 
     allData.push(ext_data_object);
 
@@ -642,14 +642,14 @@ jsPsych.data = (function() {
     }
 
     // now add to list so that it gets appended to all future data
-    dataProperties = $.extend({}, dataProperties, properties);
+    dataProperties = jQuery.extend({}, dataProperties, properties);
   };
 
   module.addDataToLastTrial = function(data) {
     if (allData.length == 0) {
       throw new Error("Cannot add data to last trial - no data recorded so far");
     }
-    allData[allData.length - 1] = $.extend({}, allData[allData.length - 1], data);
+    allData[allData.length - 1] = jQuery.extend({}, allData[allData.length - 1], data);
   }
 
   module.dataAsCSV = function() {
@@ -752,9 +752,9 @@ jsPsych.data = (function() {
 
     var display_element = jsPsych.getDisplayElement();
 
-    display_element.append($('<pre id="jspsych-data-display"></pre>'));
+    display_element.append(jQuery('<pre id="jspsych-data-display"></pre>'));
 
-    $('#jspsych-data-display').text(data_string);
+    jQuery('#jspsych-data-display').text(data_string);
   };
 
   module.urlVariables = function() {
@@ -779,7 +779,7 @@ jsPsych.data = (function() {
 
     var display_element = jsPsych.getDisplayElement();
 
-    display_element.append($('<a>', {
+    display_element.append(jQuery('<a>', {
       id: 'jspsych-download-as-text-link',
       href: blobURL,
       css: {
@@ -788,7 +788,7 @@ jsPsych.data = (function() {
       download: filename,
       html: 'download file'
     }));
-    $('#jspsych-download-as-text-link')[0].click();
+    jQuery('#jspsych-download-as-text-link')[0].click();
   }
 
   //
@@ -810,7 +810,7 @@ jsPsych.data = (function() {
       for (var key in array[j]) {
         var keyString = key + "";
         keyString = '"' + keyString.replace(/"/g, '""') + '",';
-        if ($.inArray(key, columns) == -1) {
+        if (jQuery.inArray(key, columns) == -1) {
           columns[i] = key;
           line += keyString;
           i++;
@@ -1060,7 +1060,7 @@ jsPsych.randomization = (function() {
         for (var k = 0; k < toAdd.length; k++) {
           var newpiece = {};
           newpiece[factorNames[i]] = toAdd[k];
-          factor_combinations.push($.extend({}, base, newpiece));
+          factor_combinations.push(jQuery.extend({}, base, newpiece));
         }
       }
       factor_combinations.splice(0, n);
@@ -1200,7 +1200,7 @@ jsPsych.pluginAPI = (function() {
           rt: key_time - start_time
         });
 
-        if ($.inArray(listener_id, keyboard_listeners) > -1) {
+        if (jQuery.inArray(listener_id, keyboard_listeners) > -1) {
 
           if (!parameters.persist) {
             // remove keyboard listener
@@ -1211,18 +1211,18 @@ jsPsych.pluginAPI = (function() {
         var after_up = function(up) {
 
           if (up.which == e.which) {
-            $(document).off('keyup', after_up);
+            jQuery(document).off('keyup', after_up);
 
             // mark key as released
-            held_keys.splice($.inArray(e.which, held_keys), 1);
+            held_keys.splice(jQuery.inArray(e.which, held_keys), 1);
           }
         };
 
-        $(document).keyup(after_up);
+        jQuery(document).keyup(after_up);
       }
     };
 
-    $(document).keydown(listener_function);
+    jQuery(document).keydown(listener_function);
 
     // create listener id object
     listener_id = {
@@ -1239,17 +1239,17 @@ jsPsych.pluginAPI = (function() {
 
   module.cancelKeyboardResponse = function(listener) {
     // remove the listener from the doc
-    $(document).off(listener.type, listener.fn);
+    jQuery(document).off(listener.type, listener.fn);
 
     // remove the listener from the list of listeners
-    if ($.inArray(listener, keyboard_listeners) > -1) {
-      keyboard_listeners.splice($.inArray(listener, keyboard_listeners), 1);
+    if (jQuery.inArray(listener, keyboard_listeners) > -1) {
+      keyboard_listeners.splice(jQuery.inArray(listener, keyboard_listeners), 1);
     }
   };
 
   module.cancelAllKeyboardResponses = function() {
     for (var i = 0; i < keyboard_listeners.length; i++) {
-      $(document).off(keyboard_listeners[i].type, keyboard_listeners[i].fn);
+      jQuery(document).off(keyboard_listeners[i].type, keyboard_listeners[i].fn);
     }
     keyboard_listeners = [];
   };
