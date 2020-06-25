@@ -16,7 +16,7 @@ var focus_tracker = function(win) {
     this.shift_away = 0;
   };
   
-  $(win).blur(function() {
+  jQuery(win).blur(function() {
     self.shift_away += 1;
   });
 };
@@ -44,6 +44,6 @@ function addID(exp_id) {
 * Adds a display stage rather than the generic jsPsych background element
 */
 function getDisplayElement() {
-  $('<div class = display_stage_background></div>').appendTo('body')
-  return $('<div class = display_stage></div>').appendTo('body')
+  jQuery('<div class = display_stage_background></div>').appendTo('body')
+  return jQuery('<div class = display_stage></div>').appendTo('body')
 }

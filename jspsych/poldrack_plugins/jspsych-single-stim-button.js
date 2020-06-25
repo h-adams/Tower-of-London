@@ -91,7 +91,7 @@ jsPsych.plugins["single-stim-button"] = (function() {
 	};		
 		
 	// display stimulus
-	display_element.append($('<div>', {
+	display_element.append(jQuery('<div>', {
 		html: trial.stimulus,
 		id: 'jspsych-single-button-stimulus'
 	}));
@@ -102,18 +102,18 @@ jsPsych.plugins["single-stim-button"] = (function() {
 	}
 		
 	//Define button press behavior
-	$('.' + trial.button_class).on('click',function(){
+	jQuery('.' + trial.button_class).on('click',function(){
 		if(response.mouse == -1){
 			var end_time = (new Date()).getTime();
 			var rt = end_time - start_time;
 
 			response.rt = rt
-			if ($(this).attr('id') != undefined) {
-				response.mouse = $(this).attr('id')
+			if (jQuery(this).attr('id') != undefined) {
+				response.mouse = jQuery(this).attr('id')
 			} else {
 				response.mouse = 'undefined_button'
 			}
-			$(this).addClass('responded')
+			jQuery(this).addClass('responded')
 			if (trial.response_ends_trial) {
 				end_trial();
 			}
@@ -123,7 +123,7 @@ jsPsych.plugins["single-stim-button"] = (function() {
 	// hide image if timing is set
 	if (trial.timing_stim > 0) {
 		var t1 = setTimeout(function() {
-			$('#jspsych-multi-stim-stimulus').css('visibility', 'hidden');
+			jQuery('#jspsych-multi-stim-stimulus').css('visibility', 'hidden');
 		}, trial.timing_stim);
 		setTimeoutHandlers.push(t1);
 	}

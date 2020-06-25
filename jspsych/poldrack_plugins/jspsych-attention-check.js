@@ -44,7 +44,7 @@
     var setTimeoutHandlers = [];
 
     // display stimulus
-    display_element.append($('<div>', {
+    display_element.append(jQuery('<div>', {
     	html: trial.question,
     	id: 'jspsych-attention-check-stimulus'
     }));
@@ -128,7 +128,7 @@
 
       // after a valid response, the stimulus will have the CSS class 'responded'
       // which can be used to provide visual feedback that a response was recorded
-      $("#jspsych-attention-check-stimulus").addClass('responded');
+      jQuery("#jspsych-attention-check-stimulus").addClass('responded');
 
       // only record the first response
       if (response.key == -1) {
@@ -154,7 +154,7 @@
     // hide image if timing is set
     if (trial.timing_stim > 0) {
     	var t1 = setTimeout(function() {
-    		$('#jspsych-attention-check-stimulus').css('visibility', 'hidden');
+    		jQuery('#jspsych-attention-check-stimulus').css('visibility', 'hidden');
     	}, trial.timing_stim);
     	setTimeoutHandlers.push(t1);
     }
