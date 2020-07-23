@@ -68,6 +68,8 @@ Qualtrics.SurveyEngine.addOnload(function () {
     
     function initExp() {
       
+      document.getElementById('error_div').style.display = "none";
+      
       jsPsych.init({
              timeline: tower_of_london_experiment,
              display_element: "getDisplayElement",
@@ -77,6 +79,11 @@ Qualtrics.SurveyEngine.addOnload(function () {
              },
 
              on_finish: function(data){
+               
+                console.log("WE FINISHED, YAY!");
+                jQuery('.display_stage').remove();
+                jQuery('.display_stage_background').remove();
+                qthis.showNextButton();
 
                  // Serialize the data
                  var promise = new Promise(function(resolve, reject) {

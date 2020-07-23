@@ -181,6 +181,16 @@ var getInstructFeedback = function() {
 /* ************************************ */
 /* Define experimental variables */
 /* ************************************ */
+//external variables
+//source: https://stackoverflow.com/questions/2190801/passing-parameters-to-javascript-files
+// var this_js_script = jQuery('script[src*=experiment]'); // or better regexp to get the file name..
+var this_js_script = jQuery('#experiment_script'); 
+
+var my_var_1 = this_js_script.attr('data-my_var_1');   
+if (typeof my_var_1 === "undefined" ) {
+   var my_var_1 = 'some_default_value';
+}
+
 // generic task variables
 var sumInstructTime = 0 //ms
 var instructTimeThresh = 0 ///in seconds

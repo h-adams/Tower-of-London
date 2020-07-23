@@ -13,15 +13,20 @@
     <link rel='stylesheet' type='text/css' href='https://omnikaush.github.io/Tower-of-London/default_style.css'></link>
     <link rel='stylesheet' type='text/css' href='https://omnikaush.github.io/Tower-of-London/style.css'></link>
     
-    <div>
+    <div id="error_div">
       <span style="font-size: 24px;">
         <br><br>
-        If you are seeing this message for <span style="color: rgb(255, 0, 0);"><b>more than 5 minutes</b></span> instead of the Tower of London task,<br>
-        please screen-capture this screen and send the image to us.
+        If you are seeing this message for <span style="color: rgb(255, 0, 0);"><b>more than 2 minutes</b></span> instead of the Tower of London task,<br>
+        please click the next button to continue.
         <br><br>
         <span style="font-size: 28px;">We are very sorry for the inconvenience.</span>
       </span>
     </div>
+    <div id='experiment_script' data-my_var_1="5"></div>
+    <!-- Write in a single number if you want a single trial to show up -->
+    <!-- Write in multiple comma separated numbers if you want multiple trials, e.g. 4,3,5 -->
+    <!-- Numbers can only go from 1 to 12 -->
+    
     
     <!-- COPY PASTE TO QUALTRICS UP TO HERE -->
     
@@ -38,10 +43,14 @@
 <script src='https://omnikaush.github.io/Tower-of-London/jspsych/poldrack_plugins/jspsych-poldrack-single-stim.js'></script>
 <script src='https://omnikaush.github.io/Tower-of-London/jspsych/plugins/jspsych-survey-text.js'></script>
 <script src='https://omnikaush.github.io/Tower-of-London/jspsych/poldrack_plugins/poldrack_utils.js'></script>
-<script src='https://omnikaush.github.io/Tower-of-London/experiment.js'></script>
+<!-- <script src='https://omnikaush.github.io/Tower-of-London/experiment.js'></script> -->
+<script src='experiment-problems.js'></script>
+
 <script>
 $( document ).ready(function() {
-
+    
+    document.getElementById('error_div').style.display = "none";
+  
     jsPsych.init({
              timeline: tower_of_london_experiment,
              display_element: "getDisplayElement",
