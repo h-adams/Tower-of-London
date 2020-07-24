@@ -24,7 +24,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
         'https://omnikaush.github.io/Tower-of-London/jspsych/poldrack_plugins/jspsych-poldrack-single-stim.js',
         'https://omnikaush.github.io/Tower-of-London/jspsych/plugins/jspsych-survey-text.js',
         'https://omnikaush.github.io/Tower-of-London/jspsych/poldrack_plugins/poldrack_utils.js',
-        'https://omnikaush.github.io/Tower-of-London/experiment.js'
+        'https://omnikaush.github.io/Tower-of-London/experiment-problems.js'
     ];
 
 //***************************
@@ -84,6 +84,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
                 jQuery('.display_stage').remove();
                 jQuery('.display_stage_background').remove();
                 qthis.showNextButton();
+                qthis.clickNextButton();
 
                  // Serialize the data
                  var promise = new Promise(function(resolve, reject) {

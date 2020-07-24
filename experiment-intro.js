@@ -218,7 +218,7 @@ var correct = false
 var exp_stage = 'practice'
 var colors = ['Green', 'Red', 'Blue']
 var problem_i = 0
-var time_per_trial = 90000 //time per trial in seconds
+var time_per_trial = 20000 //time per trial in seconds
 var time_elapsed = 0 //tracks time for a problem
 var num_moves = 0 //tracks number of moves for a problem
   /*keeps track of peg board (where balls are). Lowest ball is the first value for each peg.
@@ -625,16 +625,16 @@ var problem_node = {
 
 /* create experiment definition array */
 var tower_of_london_experiment = [];
-// tower_of_london_experiment.push(instruction_node);
-// tower_of_london_experiment.push(practice_node);
-// tower_of_london_experiment.push(feedback_block)
-tower_of_london_experiment.push(start_test_block);
-for (var i = 0; i < problems.length; i++) {
-  tower_of_london_experiment.push(problem_node);
-  tower_of_london_experiment.push(feedback_block)
-  if (i != problems.length-1) {
-    tower_of_london_experiment.push(advance_problem_block)
-  }
-}
+tower_of_london_experiment.push(instruction_node);
+tower_of_london_experiment.push(practice_node);
+tower_of_london_experiment.push(feedback_block)
+// tower_of_london_experiment.push(start_test_block);
+// for (var i = 0; i < problems.length; i++) {
+  // tower_of_london_experiment.push(problem_node);
+  // tower_of_london_experiment.push(feedback_block)
+  // if (i != problems.length-1) {
+    // tower_of_london_experiment.push(advance_problem_block)
+  // }
+// }
 // tower_of_london_experiment.push(post_task_block)
 // tower_of_london_experiment.push(end_block);
