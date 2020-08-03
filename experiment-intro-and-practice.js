@@ -626,8 +626,8 @@ var problem_node = {
 /* create experiment definition array */
 var tower_of_london_experiment = [];
 tower_of_london_experiment.push(instruction_node);
-// tower_of_london_experiment.push(practice_node);
-// tower_of_london_experiment.push(feedback_block)
+tower_of_london_experiment.push(practice_node);
+tower_of_london_experiment.push(feedback_block)
 // tower_of_london_experiment.push(start_test_block);
 // for (var i = 0; i < problems.length; i++) {
   // tower_of_london_experiment.push(problem_node);

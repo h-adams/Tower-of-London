@@ -406,6 +406,16 @@ var instruction_node = {
 }
 
 
+var finish_practice_block = {
+  type: 'poldrack-text',
+  data: {
+    trial_id: "instruction"
+  },
+  timing_response: 180000,
+  text: '<div class = centerbox><p class = block-text>You have successfully completed the practice trial. Press <strong>enter</strong> to continue.</p></div>',
+  cont_key: [13]
+};
+
 var start_test_block = {
   type: 'poldrack-text',
   data: {
@@ -625,8 +635,9 @@ var problem_node = {
 
 /* create experiment definition array */
 var tower_of_london_experiment = [];
-tower_of_london_experiment.push(instruction_node);
-// tower_of_london_experiment.push(practice_node);
+// tower_of_london_experiment.push(instruction_node);
+tower_of_london_experiment.push(practice_node);
+tower_of_london_experiment.push(finish_practice_block);
 // tower_of_london_experiment.push(feedback_block)
 // tower_of_london_experiment.push(start_test_block);
 // for (var i = 0; i < problems.length; i++) {
